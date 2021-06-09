@@ -8,8 +8,7 @@ import com.example.myclassifieds.network.ApiService
 import com.example.myclassifieds.util.Resource
 import kotlinx.coroutines.Dispatchers
 
-class ClassifyViewModel(
-    val apiService: ApiService = App.api!!
+class ClassifyViewModel(val apiService: ApiService = App.api!!
 ): ViewModel(){
     fun getClassifieds() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))

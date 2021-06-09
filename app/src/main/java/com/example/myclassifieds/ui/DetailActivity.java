@@ -30,31 +30,35 @@ public class DetailActivity extends AppCompatActivity {
 
         Classify classify = getIntent().getParcelableExtra("classify");
 
-        detailImage = findViewById(R.id.detailImage);
-        classifyName = findViewById(R.id.classifyName);
-        classifyDate = findViewById(R.id.classifyDate);
-        classifyPrice = findViewById(R.id.classifyPrice);
+        detailImage = (ImageView)findViewById(R.id.detailImage);
+        classifyName = (TextView)findViewById(R.id.classifyName);
+        classifyDate = (TextView)findViewById(R.id.classifyDate);
+        classifyPrice = (TextView)findViewById(R.id.classifyPrice);
         home = findViewById(R.id.home);
 
-        classifyName.setText(classify.getName());
-        classifyPrice.setText(classify.getPrice());
+        if(classify!=null) {
 
-        String date = classify.getCreated_at();
-        SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date newDate = null;
-        try {
-            newDate = spf.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
+            classifyName.setText(classify.getName());
+            classifyPrice.setText(classify.getPrice());
+
+            String date = classify.getCreated_at();
+            SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date newDate = null;
+            try {
+                newDate = spf.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            spf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            date = spf.format(newDate);
+
+            classifyDate.setText(date);
+
+            Glide.with(this)
+                    .load(classify.getImage_urls_thumbnails().get(0))
+                    .into(detailImage);
+
         }
-        spf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        date = spf.format(newDate);
-
-        classifyDate.setText(date);
-
-        Glide.with(this)
-                .load(classify.getImage_urls_thumbnails().get(0))
-                .into(detailImage);
 
         home.setOnClickListener(v -> {
 
