@@ -1,6 +1,7 @@
 package com.example.myclassifieds
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -27,6 +28,11 @@ class DetailActivityTest {
         onView(withId(R.id.detailImage))
             .check(matches(isDisplayed()))
 
+    }
+
+    @Test
+    fun goHome() {
+        onView(withId(R.id.home)).perform(ViewActions.click())
     }
 }
 
