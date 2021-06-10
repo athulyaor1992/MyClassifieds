@@ -1,7 +1,6 @@
 package com.example.myclassifieds.adapter
 
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,11 @@ import com.example.myclassifieds.R
 import com.example.myclassifieds.model.Classify
 import com.example.myclassifieds.ui.DetailActivity
 import kotlinx.android.synthetic.main.classify_item.view.*
-import java.io.File
 import java.text.SimpleDateFormat
-import java.util.*
 
 
 class ClassifyAdapter(
-    private val users: ArrayList<Classify>,
+    private val users: ArrayList<Classify?>,
     private val cellClickListener: CellClickListener
 ) : RecyclerView.Adapter<ClassifyAdapter.DataViewHolder>() {
 
@@ -69,14 +66,23 @@ class ClassifyAdapter(
     override fun getItemCount(): Int = users.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
-        holder.bind(users[position])
+        holder.bind(users[position]!!)
 
         val data = users[position]
 
         holder.itemView.setOnClickListener{
-            cellClickListener.onCellClickListener(data)
+            cellClickListener.onCellClickListener(data!!)
         }
 
+    }
+
+    fun addGridItemsToView(position: Int, data: Classify?) {
+      //  tileList.add(position, data)
+        internalNotifyItemInserted(position)
+    }
+
+    fun internalNotifyItemInserted(position: Int) {
+        notifyItemInserted(position)
     }
 
     fun addUsers(users: List<Classify>) {

@@ -15,13 +15,13 @@ import com.example.myclassifieds.util.snackbar
 import com.example.myclassifieds.viewmodel.ClassifyViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),ClassifyAdapter.CellClickListener  {
+open class MainActivity : AppCompatActivity(),ClassifyAdapter.CellClickListener  {
 
     private lateinit var viewModel: ClassifyViewModel
     private lateinit var adapter: ClassifyAdapter
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

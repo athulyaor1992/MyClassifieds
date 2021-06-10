@@ -22,19 +22,21 @@ public class DetailActivity extends AppCompatActivity {
     ImageView detailImage;
     Button home;
     TextView classifyName, classifyDate, classifyPrice;
+    Classify classify;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        Classify classify = getIntent().getParcelableExtra("classify");
+         classify = getIntent().getParcelableExtra("classify");
 
         detailImage = (ImageView)findViewById(R.id.detailImage);
         classifyName = (TextView)findViewById(R.id.classifyName);
         classifyDate = (TextView)findViewById(R.id.classifyDate);
         classifyPrice = (TextView)findViewById(R.id.classifyPrice);
-        home = findViewById(R.id.home);
+        home = (Button)findViewById(R.id.home);
 
         if(classify!=null) {
 
